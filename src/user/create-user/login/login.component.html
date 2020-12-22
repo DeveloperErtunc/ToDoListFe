@@ -1,0 +1,31 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="../../assets/Mazaka Logo.png" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form>
+      <input type="text" required [(ngModel)]="user.Email"
+        name="Email" class="fadeIn second"  placeholder="Email">
+      <input type="text" required  [(ngModel)]="user.Password"
+        name="Passowrd" class="fadeIn third ps"  placeholder="Password">
+      <input type="submit" class="fadeIn fourth" (click)="Login()" value="Log In">
+    </form>
+      <div *ngIf="!userResponse.isSuccess"  style="color: red;">
+        {{userResponse.message}}
+      </div>
+      <div  *ngIf="t" style="color: red;">
+        {{ResponseUser.message}}
+      </div>
+      
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="http://localhost:4200/signup">Now Sign Up</a>
+    </div>
+
+  </div>
+</div>

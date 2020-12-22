@@ -1,0 +1,20 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+th{
+  width:200px;
+}
+.aktif{
+  width: 153px;
+  height: 35px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: solid 1px gray;
+  background-color: red;
+}
+.pasive{
+  width: 153px;
+  height: 35px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: solid 1px gray;
+  background-color: green;
+}

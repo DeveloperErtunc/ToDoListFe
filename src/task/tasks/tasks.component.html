@@ -1,0 +1,53 @@
+<div >
+    <table style="margin-top: 0%;" class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">
+            Name Surname
+          </th>
+          <th scope="col">
+            Start Up Date
+          </th>
+          <th scope="col">
+            Dateline
+          </th>
+          <th scope="col">
+            Title
+          </th>
+          <th scope="col">
+            Description
+          </th>
+          <th scope="col">
+            Status
+
+            <a *ngIf="user.role == 'Admin'" [routerLink]="['/addtask',user.id]">Add A New Task</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row" *ngFor="let task of taskArray">
+          <td>
+            {{task.nameUserName}}
+          </td>
+          <td>
+            {{task.due_date}}
+          </td>
+          <td>
+            {{task.date}}
+          </td>
+          <td>
+            {{task.title}}
+          </td>
+          <td>
+            {{task.content}}
+          </td>
+          <td>
+            <button (click)="Complete(task.id)"  style="margin-top: 5px;" class="aktif" *ngIf="!task.status" >Complete</button>
+            <button class="pasive" *ngIf="task.status" >Completed</button>
+            <button style="margin-top: 5px; width: 153px;"*ngIf="user.role == 'Admin'"
+             class="btn btn-primary">Close</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
