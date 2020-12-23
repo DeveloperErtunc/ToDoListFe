@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/models/task';
 import { TaskService } from 'src/services/taskservice/task.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/services/userservice/user.service';
 import { ResponseUser } from 'src/models/user';
 import { UserResponse } from 'src/models/userResponse';
 import { convertUpdateArguments } from '@angular/compiler/src/compiler_util/expression_converter';
+import { TokenInterceptor } from 'src/services/interceptor/tokenInterceptor';
 
 @Component({
   selector: 'app-tasks',
@@ -13,14 +14,22 @@ import { convertUpdateArguments } from '@angular/compiler/src/compiler_util/expr
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
- taskArray:Array <Task> = new Array<Task>();
- user:ResponseUser= new ResponseUser(); 
+
   constructor(
     private Taskservice:TaskService,
     private ActivatedRoute:ActivatedRoute,
-    private UserService:UserService
-  ) { }
+    private UserService:UserService,
+    private Router:Router,
+  
+  ) {}
+
+  //#region  Variables
+    taskArray:Array <Task> = new Array<Task>();
+    user:ResponseUser= new ResponseUser();
     id:number|undefined;
+ //#endregion
+  
+
   ngOnInit(): void {
     this.UserService.ByID(this.ActivatedRoute.snapshot.params.id).subscribe(
       data => {
@@ -99,4 +108,41 @@ export class TasksComponent implements OnInit {
       }
     });
   }
+
+  Close(task:Task)
+  {
+    this.Taskservice.CLose(task).subscribe(listTask => {
+      if(listTask.length == 0)
+      {
+        this.taskArray.length = 0;
+        return;
+      }
+      else{
+        this.taskArray.length = 0;
+      }
+
+      this.UserService.GetAllUser(this.ActivatedRoute.snapshot.params.id).subscribe(data3 => 
+        {
+          for(let task of listTask)
+          {
+            for(let user of data3)
+            {
+              if(user.assignee == task.assignee)
+              {
+                task.nameUserName =  user.nameSurName;
+                 task.due_date = task.due_date?.slice(0,10);
+                this.taskArray.push(task);
+              }
+            }
+          }
+        });
+    });
+  }
+
+  LogOut()
+  {
+    this.UserService.tokenSubject.next(undefined);
+    this.Router.navigate([""]);
+  }
+
 }

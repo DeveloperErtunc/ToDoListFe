@@ -18,19 +18,23 @@ export class AddtaskComponent implements OnInit {
     private UserService:UserService,
     private ActivatedRoute:ActivatedRoute,
     private Router:Router
-    ) { }
-  task:Task = new Task();
-  users:ResponseUser[]|undefined;
-  validation = false;
+  )
+  { }
+
+  //#region  Variables
+    task:Task = new Task();
+    users:ResponseUser[]|undefined;
+    validation = false;
+  //#endregion
+
   ngOnInit():
   void {
     this.UserService.GetAllUser(this.ActivatedRoute.snapshot.params.id).subscribe(data => {
       this.users = data;
     console.log(this.users);
-    })
-    
+    });
   }
- 
+
   Add(_form:NgForm)
   {
     if(_form.valid)
@@ -39,7 +43,7 @@ export class AddtaskComponent implements OnInit {
         console.log(data);
       this.Router.navigate(['tasks',this.ActivatedRoute.snapshot.params.id]);
       });
-      
+
     }
     else{
       this.validation = true;

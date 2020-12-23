@@ -57,6 +57,7 @@ export class CreateUserComponent implements OnInit {
         this.userResponse.erorrs.push("Passwords do not match");
       }
     }
+
     else{
       this.validation = true;
     }

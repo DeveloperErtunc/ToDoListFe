@@ -11,6 +11,7 @@
 
     <!-- Login Form -->
     <form #TaskForm='ngForm'>
+    <div>
       <input type="text" #title="ngModel" required 
         [(ngModel)]="task.title" name="title"  class="fadeIn second"  placeholder="Title">
         <div  *ngIf="title.invalid && validation">
@@ -18,16 +19,17 @@
             Required.
           </div>
         </div>
+    </div>
 
-      <input type="text" required [(ngModel)]="task.content" name="content" 
-        class="fadeIn third"   placeholder="Description" #content="ngModel">
+      <div>
+        <input type="text" required [(ngModel)]="task.content" name="content" 
+          class="fadeIn third"   placeholder="Description" #content="ngModel">
         <div  *ngIf="content.invalid && validation">
           <div>
             Required.
           </div>
         </div>
-
-
+      </div>
 
       <div class="form-group" > <!--Brand-->
         <div>
@@ -38,18 +40,24 @@
             <option *ngFor="let user of users" [ngValue]="user.assignee">{{user.nameSurName}}</option>
         </select>
         <div *ngIf="assignee.invalid && validation" >Required</div>
-    </div><!--Brand-->
+      </div><!--Brand-->
 
-    <input type="date"  style="width: 200px; height: 50px;"  required [(ngModel)]="task.due_date" name="due_date" 
-    class="fadeIn third "  placeholder="Confirm Password" #due_date="ngModel">
-    <div  *ngIf="due_date.invalid && validation">
-      <div>
-        Required.
+    <div>
+      <input type="date"  style="width: 200px; height: 50px;"  required
+        [(ngModel)]="task.due_date" name="due_date" 
+        class="fadeIn third "  placeholder="Confirm Password" #due_date="ngModel">
+      <div  *ngIf="due_date.invalid && validation">
+        <div>
+          Required.
+        </div>
       </div>
     </div>
-    
+
+    <div>
       <input type="submit"  required class="fadeIn fourth" (click)="Add(TaskForm)" 
-        value="Add A Task">
+      value="Add A Task">
+    </div>
+
     </form>
   </div>
 </div>

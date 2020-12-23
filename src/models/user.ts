@@ -7,7 +7,7 @@ public Email!:string;
 public id!:number;  
 }
 export class ResponseUser{
-  public message:string|undefined;
+  public message!:string;
   public id!:number;
   public userName!:string;
   public nameSurName!:string;
@@ -16,4 +16,6 @@ export class ResponseUser{
   public email!:string;
   public assignee!:number;
   public role!:string;
+  public  isSuccess:boolean|undefined;
+  public token!:string;
   }

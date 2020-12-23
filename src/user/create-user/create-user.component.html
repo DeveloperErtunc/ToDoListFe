@@ -8,7 +8,8 @@
 
     <!-- Login Form -->
     <form #UserForm='ngForm'>
-      <input type="text" minlength="5" id="UserName" #UserName="ngModel" required 
+      <div>
+        <input type="text" minlength="5" id="UserName" #UserName="ngModel" required 
         [(ngModel)]="user.UserName" name="UserName"  class="fadeIn second"  placeholder="User Name">
         <div  *ngIf="UserName.invalid && validation">
           <div>
@@ -18,7 +19,9 @@
           Minlength Five.
           </div>
         </div>
+      </div>
 
+      <div>
       <input type="text" minlength="6" required [(ngModel)]="user.Password" name="Password" 
         class="fadeIn third ps"   placeholder="Password" #Password="ngModel">
         <div  *ngIf="Password.invalid && validation">
@@ -29,32 +32,42 @@
           Minlength Six.
           </div>
         </div>
+      </div>
 
+      <div>
       <input type="text" minlength="6" required [(ngModel)]="user.ConfirmPassword" name="ConfirmPassword" 
-      class="fadeIn third ps"  placeholder="Confirm Password" #ConfirmPassword="ngModel">
-      <div  *ngIf="ConfirmPassword.invalid && validation">
-        <div>
-          Required.
-        </div>
-        <div>
-        Minlength Six.
+        class="fadeIn third ps"  placeholder="Confirm Password" #ConfirmPassword="ngModel">
+        <div  *ngIf="ConfirmPassword.invalid && validation">
+          <div>
+            Required.
+          </div>
+          <div>
+          Minlength Six.
+          </div>
         </div>
       </div>
 
+      <div>
       <input type="text"   required [(ngModel)]="user.NameSurName" name="NameSurName"
         class="fadeIn third" #Name="ngModel"  placeholder="Name Surname">
         <div *ngIf="Name.invalid && validation"> 
           Required
         </div>
+      </div>
 
+    <div>
       <input type="text" required [(ngModel)]="user.Email" name="Email" class="fadeIn third" 
         placeholder="Email"  #Email="ngModel">
         <div *ngIf="Email.invalid && validation">
           Required
         </div>
+    </div>
 
+    <div>
       <input type="submit"  required class="fadeIn fourth" (click)="Register(UserForm)" 
         value="Sign Up">
+    </div>
+
     </form>
     <div *ngFor="let response of userResponse.erorrs" style="color: red;">{{response}}</div>
     <div style="color: red;">{{userResponse.message}}</div>

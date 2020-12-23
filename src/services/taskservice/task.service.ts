@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Task } from 'src/models/task';
@@ -31,9 +31,9 @@ export class TaskService {
    return this.Httpclient.get<Task[]>(ConfigurationAPI.Task+"status/id?id="+id);
   }
 
-  public CLose(task:Task):Observable<Task>
+  public CLose(task:Task):Observable<Task[]>
   {
-   return this.Httpclient.post<Task>(ConfigurationAPI.Task+"Close",task)
+   return this.Httpclient.post<Task[]>(ConfigurationAPI.Task+"Close",task)
   }
 
 

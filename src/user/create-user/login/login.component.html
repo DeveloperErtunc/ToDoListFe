@@ -1,6 +1,5 @@
 <div class="wrapper fadeInDown">
   <div id="formContent">
-    <!-- Tabs Titles -->
 
     <!-- Icon -->
     <div class="fadeIn first">
@@ -15,17 +14,22 @@
         name="Passowrd" class="fadeIn third ps"  placeholder="Password">
       <input type="submit" class="fadeIn fourth" (click)="Login()" value="Log In">
     </form>
-      <div *ngIf="!userResponse.isSuccess"  style="color: red;">
-        {{userResponse.message}}
+
+    <div>
+      <div *ngIf="!ResponseUser.isSuccess"  style="color: red;">
+        {{ResponseUser.message}}
       </div>
       <div  *ngIf="t" style="color: red;">
         {{ResponseUser.message}}
       </div>
-      
+    </div>
+
     <!-- Remind Passowrd -->
-    <div id="formFooter">
+    <div>
+      <div id="formFooter">
       <a class="underlineHover" href="http://localhost:4200/signup">Now Sign Up</a>
     </div>
+  </div>
 
   </div>
 </div>

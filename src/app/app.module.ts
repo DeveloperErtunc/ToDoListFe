@@ -9,7 +9,10 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from 'src/services/userservice/user.service';
 import { AddtaskComponent } from 'src/task/addtask/addtask.component';
 import { TasksComponent } from 'src/task/tasks/tasks.component';
-
+import { JwtService } from 'src/services/tokenservice/token';
+import {TokenInterceptor} from 'src/services/interceptor/tokenInterceptor';
+import { AlertifyService } from 'src/services/alertify/alertify.service';
+import { LoginGuard } from 'src/services/guard/guardToken';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,12 @@ import { TasksComponent } from 'src/task/tasks/tasks.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService],
+  providers: [UserService,JwtService,TokenInterceptor,AlertifyService,LoginGuard,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  },
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
