@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   //#region  Variables
+    t= false;
     public user:User = new User();
     public ResponseUser:ResponseUser = new ResponseUser();
     tokenClass:TokenClass = new TokenClass();
